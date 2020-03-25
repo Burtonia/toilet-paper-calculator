@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Toilet Paper Calculator, by Alexander Burton</title>
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
+  <meta name="application-name" content="Toilet Paper Calculator">
+  <meta name="description" content="Calculate Your Toilet Paper Usage in Seconds.">
+  <meta name="robots" content="index,follow"><!-- All Search Engines -->
+  <meta name="googlebot" content="index,follow"><!-- Google Specific -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+  <div id="toilet-paper-app" class="py-0 px-0">
+
+      <div class="app-header bg-primary text-white">
+        <div class="container px-3 py-5 text-center">
+          <h1>How Much Toilet Paper Do I Need?</h1>
+        </div>
+      </div>
+
+      <div class="app-sub-header bg-light">
+        <div class="container px-3 py-3 text-center">
+          <h2 class="h4">Calculate your estimated toilet paper usage</h2>
+        </div>
+      </div>
+
+      <div id="app-body" class="app-body px-3 py-5">
+
+        <div class="container">
+
+          <div id="tp-form-entries">
+
+              <div class="tp-form mb-4">
+                <div class="card">
+                  <div class="card-header">
+                    <a class="delete-potty-card badge badge-danger" style="color:#fff;">X</a>
+                  </div>
+                   <div class="card-body">
+                      <div class="row">
+
+                        <div class="col-12 mb-3">
+                          <input type="text" class="form-control" name="name" value="" placeholder="Name" />
+                        </div>
+
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-4 mb-3">
+                              <label>Poops/Day</label>
+                              <input type="number" class="form-control" name="poops_day" placeholder="Poops/Day" step="1" />
+                            </div>
+                            <div class="col-4 mb-3">
+                              <label>Wipes/Poop</label>
+                              <input type="number" class="form-control" name="wipes_poop" placeholder="Wipes/Poop" step="1" />
+                            </div>
+                            <div class="col-4 mb-3">
+                              <label>Sheets/Wipe</label>
+                              <input type="number" class="form-control" name="sheets_poop_wipe" placeholder="Sheets/Wipe" step="1" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-4 mb-3">
+                              <label>Pees/Day</label>
+                              <input type="number" class="form-control" name="pees_day" placeholder="Pees/Day" step="1" />
+                            </div>
+                            <div class="col-4 mb-3">
+                              <label>Wipes/Pee</label>
+                              <input type="number" class="form-control" name="wipes_pee" placeholder="Wipes/Pee" step="1" />
+                            </div>
+                            <div class="col-4 mb-3">
+                              <label>Sheets/Wipe</label>
+                              <input type="number" class="form-control" name="sheets_pee_wipe" placeholder="Sheets/Wipe" step="1" />
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+
+          <div class="additional-fields mb-4">
+            <div class="card">
+              <div class="card-header">Additional Info</div>
+              <div class="card-body">
+                <div class="row">
+                   <div class="col-12 col-md-4 mb-4">
+                     <label>Sheets per Roll</label>
+                     <input type="number" class="form-control" name="sheets_per_roll" placeholder="Sheets per Roll" step="1" />
+                   </div>
+                   <div class="col-12 col-md-4 mb-4">
+                     <label>Quarantine Time (days)</label>
+                     <input type="number" class="form-control" name="quarantine_time" placeholder="Quarantine Time (Days)" step="1" />
+                   </div>
+                   <div class="col-12 col-md-4 mb-4">
+                     <label>Rolls to get you by</label>
+                     <div><span id="total-rolls" class="badge badge-success" style="font-size:1.25rem;"></span></div>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container mb-4 text-center">
+            <button id="add-potty-person" class="btn btn-primary">Add Person</button>
+          </div>
+
+
+          <div class="form-entries-submit text-center">
+            <button id="submit-potty-form" class="btn btn-lg btn-success" type="button">Calculate Rolls</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="app-footer" class="app-footer px-3 py-5" style="display:none;">
+
+        <div class="container mb-4">
+          <div id="tp-form-results">
+            <div class="card">
+              <div class="card-header">
+                <h2>Results</h2>
+              </div>
+              <div class="card-body">
+                <div class="container">
+                  <div class="row">
+                     <div class="col-12 mb-4 text-center">
+                       <span><span id="result-rolls" class="badge badge-success" style="font-size:2rem;"></span></span>
+                     </div>
+                  </div>
+                </div>
+
+                <div class="container">
+                  <div class="container-fluid px-0 text-center">
+                    <h3>Roll Usage</h3>
+                  </div>
+                  <table id="roll_usage" class="table">
+                    <thead style="display:contents !important;">
+                      <tr class="text-center">
+                        <th>Name</th>
+                        <th>Daily</th>
+                        <th>Weekly</th>
+                        <th>Monthly</th>
+                      </tr>
+                    </thead>
+                    <tbody id="potty-roll-data"></tbody>
+                    <tfoot>
+                      <tr class="text-center">
+                        <th>Totals</th>
+                        <th id="total_rolls_daily"></th>
+                        <th id="total_rolls_weekly"></th>
+                        <th id="total_rolls_monthly"></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+
+                <div class="container">
+                  <div class="container-fluid px-0 text-center">
+                    <h3>Sheet Usage</h3>
+                  </div>
+                  <table id="sheet_usage" class="table">
+                    <thead style="display:contents !important;">
+                      <tr class="text-center">
+                        <th>Name</th>
+                        <th>Daily</th>
+                        <th>Weekly</th>
+                        <th>Monthly</th>
+                      </tr>
+                    </thead>
+                    <tbody id="potty-sheet-data"></tbody>
+                    <tfoot>
+                      <tr class="text-center">
+                        <th>Totals</th>
+                        <th id="total_sheets_daily"></th>
+                        <th id="total_sheets_weekly"></th>
+                        <th id="total_sheets_monthly"></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="app-refresh text-center py-3">
+        <a href="/toilet-paper-calculator"><button class="btn">Refresh Form</button></a>
+      </div>
+
+  </div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script>
+
+jQuery(document).ready(function($) {
+
+  let form_block = `<div class="tp-form mb-4"><div class="card"><div class="card-header"><a class="delete-potty-card badge badge-danger" style="color:#fff;">X</a></div><div class="card-body"><div class="row"><div class="col-12 mb-3"><input type="text" class="form-control" name="name" value="" placeholder="Name" /></div><div class="col-12"><div class="row"><div class="col-4"><label>Poops/Day</label><input type="number" class="form-control" name="poops_day" placeholder="Poops/Day" step="1" /></div><div class="col-4"><label>Wipes/Poop</label><input type="number" class="form-control" name="wipes_poop" placeholder="Wipes/Poop" step="1" /></div><div class="col-4"><label>Sheets/Wipe</label><input type="number" class="form-control" name="sheets_poop_wipe" placeholder="Sheets/Wipe" step="1" /></div></div></div><div class="col-12"><div class="row"><div class="col-4"><label>Pees/Day</label><input type="number" class="form-control" name="pees_day" placeholder="Pees/Day" step="1" /></div><div class="col-4"><label>Wipes/Pee</label><input type="number" class="form-control" name="wipes_pee" placeholder="Wipes/Pee" step="1" /></div><div class="col-4"><label>Sheets/Wipe</label><input type="number" class="form-control" name="sheets_pee_wipe" placeholder="Sheets/Wipe" step="1" /></div></div></div></div></div></div></div>`;
+
+  function initDeletePottyCard() {
+    $('.delete-potty-card').on('click', function() {
+      $(this).parent().parent().parent().remove();
+    });
+  }
+
+  initDeletePottyCard();
+
+  $('#add-potty-person').on('click', function() {
+    $('#tp-form-entries').append(form_block);
+    initDeletePottyCard();
+  });
+
+  $('#submit-potty-form').on('click', function() {
+    let totals = {
+      sheets_daily: 0,
+      sheets_weekly: 0,
+      sheets_monthly: 0,
+      rolls_daily: 0,
+      rolls_weekly: 0,
+      rolls_monthly: 0,
+    }
+    let sheets_per_roll = $('input[name="sheets_per_roll"]').val();
+    let quarantine_time = $('input[name="quarantine_time"]').val();
+
+    $('.tp-form').each(function() {
+
+      let name = $(this).find('input[name="name"]').first().val();
+      let poops = {
+         ppd: $(this).find('input[name="poops_day"]').first().val(),
+         wpp: $(this).find('input[name="wipes_poop"]').first().val(),
+         spw: $(this).find('input[name="sheets_poop_wipe"]').first().val()
+      };
+      let pees = {
+         ppd: $(this).find('input[name="pees_day"]').first().val(),
+         wpp: $(this).find('input[name="wipes_pee"]').first().val(),
+         spw: $(this).find('input[name="sheets_pee_wipe"]').first().val()
+      };
+
+      poops.daily = parseInt(poops.ppd) * parseInt(poops.wpp) * parseInt(poops.spw);
+      poops.weekly = (poops.daily * 7);
+      poops.monthly = (poops.weekly * 4.285714);
+
+      pees.daily = parseInt(pees.ppd) * parseInt(pees.wpp) * parseInt(pees.spw);
+      pees.weekly = (pees.daily * 7);
+      pees.monthly = (pees.weekly * 4.285714);
+
+      let usage = {
+        sheets_daily: (poops.daily + pees.daily),
+        sheets_weekly: (poops.weekly + pees.weekly),
+        sheets_monthly: (poops.monthly + pees.monthly),
+        rolls_daily: ((poops.daily + pees.daily) / sheets_per_roll),
+        rolls_weekly: ((poops.weekly + pees.weekly) / sheets_per_roll),
+        rolls_monthly: ((poops.monthly + pees.monthly) / sheets_per_roll),
+      }
+
+      totals.sheets_daily += usage.sheets_daily;
+      totals.sheets_weekly += usage.sheets_weekly;
+      totals.sheets_monthly += usage.sheets_monthly;
+
+      totals.rolls_daily += usage.rolls_daily;
+      totals.rolls_weekly += usage.rolls_weekly;
+      totals.rolls_monthly += usage.rolls_monthly;
+
+      $('#potty-sheet-data').append(`<tr class="text-center"><td>${name}</td><td>${usage.sheets_daily}</td><td>${usage.sheets_weekly}</td><td>${Math.ceil(usage.sheets_monthly)}</td></tr>`);
+      $('#potty-roll-data').append(`<tr class="text-center"><td>${name}</td><td>${usage.rolls_daily}</td><td>${usage.rolls_weekly}</td><td>${Math.ceil(usage.rolls_monthly)}</td></tr>`);
+    });
+
+    let roll_count = Math.ceil(totals.rolls_daily * quarantine_time);
+
+    $('#total_sheets_daily').text(Math.ceil(totals.sheets_daily));
+    $('#total_sheets_weekly').text(Math.ceil(totals.sheets_weekly));
+    $('#total_sheets_monthly').text(Math.ceil(totals.sheets_monthly));
+
+    $('#total_rolls_daily').text(Math.ceil(totals.rolls_daily));
+    $('#total_rolls_weekly').text(Math.ceil(totals.rolls_weekly));
+    $('#total_rolls_monthly').text(Math.ceil(totals.rolls_monthly));
+
+    $('#total-rolls, #result-rolls').text(`${roll_count} Rolls Over ${quarantine_time} days`);
+
+    $('#app-body').fadeOut();
+    $('#app-footer').fadeIn();
+
+  });
+
+
+});
+</script>
+
+</html>
