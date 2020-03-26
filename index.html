@@ -19,7 +19,7 @@
   <meta name="googlebot" content="index,follow"><!-- Google Specific -->
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
 </head>
 
 <body>
@@ -27,17 +27,33 @@
 
       <div class="app-header bg-primary text-white">
         <div class="container px-3 py-5 text-center">
-          <h1>How Much Toilet Paper Do I Need?</h1>
+          <h1>Toilet Paper Calculator<br/><span style="visibility:hidden;">by Alexander Burton</span></h1>
+          <a style="color:#fff;" href="https://alexburton.com" target="_blank">alexburton.com</a> | <a href="privacy-policy.html" style="color:#fff;">Privacy Policy</a>
         </div>
       </div>
 
       <div class="app-sub-header bg-light">
         <div class="container px-3 py-3 text-center">
-          <h2 class="h4">Calculate your estimated toilet paper usage.</h2>
+          <h2 class="h4">How Much Toilet Paper Do I Need?<br/> Calculate your estimated toilet paper usage.</h2>
         </div>
       </div>
 
       <div id="app-body" class="app-body px-3 py-5">
+
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-12 col-md-6">
+              <p><strong>Poops/Day</strong> = <label>Poops per Day</label></p>
+              <p><strong>Wipes/Poop</strong> = <label>Wipes per Poop</label></p>
+              <p><strong>Sheets/Wipe</strong> = <label>Sheets per Wipe</label></p>
+            </div>
+            <div class="col-12 col-md-6">
+              <p><strong>Pees/Day</strong> = <label>Pees per Day</label></p>
+              <p><strong>Wipes/Pee</strong> = <label>Wipes per Pee</label></p>
+              <p><strong>Sheets/Wipe</strong> = <label>Sheets per Wipe</label></p>
+            </div>
+          </div>
+        </div>
 
         <div class="container">
 
@@ -47,7 +63,6 @@
                 <div class="card">
                   <div class="card-header">
                     <span>Household Member</span>
-                    <a class="delete-potty-card badge badge-danger p-2" style="color:#fff; float:right;">X</a>
                   </div>
                    <div class="card-body">
                       <div class="row">
@@ -58,15 +73,15 @@
 
                         <div class="col-12">
                           <div class="row">
-                            <div class="col-4 mb-3">
+                            <div class="col-12 col-sm-4 mb-3">
                               <label>Poops/Day</label>
                               <input type="number" class="form-control" name="poops_day" placeholder="Poops/Day" step="1" />
                             </div>
-                            <div class="col-4 mb-3">
+                            <div class="col-12 col-sm-4 mb-3">
                               <label>Wipes/Poop</label>
                               <input type="number" class="form-control" name="wipes_poop" placeholder="Wipes/Poop" step="1" />
                             </div>
-                            <div class="col-4 mb-3">
+                            <div class="col-12 col-sm-4 mb-3">
                               <label>Sheets/Wipe</label>
                               <input type="number" class="form-control" name="sheets_poop_wipe" placeholder="Sheets/Wipe" step="1" />
                             </div>
@@ -75,15 +90,15 @@
 
                         <div class="col-12">
                           <div class="row">
-                            <div class="col-4 mb-3">
+                            <div class="col-12 col-sm-4 mb-3">
                               <label>Pees/Day</label>
                               <input type="number" class="form-control" name="pees_day" placeholder="Pees/Day" step="1" />
                             </div>
-                            <div class="col-4 mb-3">
+                            <div class="col-12 col-sm-4 mb-3">
                               <label>Wipes/Pee</label>
                               <input type="number" class="form-control" name="wipes_pee" placeholder="Wipes/Pee" step="1" />
                             </div>
-                            <div class="col-4 mb-3">
+                            <div class="col-12 col-sm-4 mb-3">
                               <label>Sheets/Wipe</label>
                               <input type="number" class="form-control" name="sheets_pee_wipe" placeholder="Sheets/Wipe" step="1" />
                             </div>
@@ -104,21 +119,21 @@
 
           <div class="additional-fields mb-4">
             <div class="card">
-              <div class="card-header">Additional Info</div>
+              <div class="card-header">Additional Information</div>
               <div class="card-body">
                 <div class="row">
-                   <div class="col-12 col-md-4 mb-4">
+                   <div class="col-12 col-sm-6 mb-4">
                      <label>Sheets per Roll</label>
                      <input type="number" class="form-control" name="sheets_per_roll" placeholder="Sheets per Roll" step="1" />
                    </div>
-                   <div class="col-12 col-md-4 mb-4">
+                   <div class="col-12 col-sm-6 mb-4">
                      <label>Quarantine Time (days)</label>
                      <input type="number" class="form-control" name="quarantine_time" placeholder="Quarantine Time (Days)" step="1" />
                    </div>
-                   <div class="col-12 col-md-4 mb-4">
+                   <!-- <div class="col-12 col-md-4 mb-4">
                      <label>Rolls to get you by</label>
                      <div><span id="total-rolls" class="badge badge-success" style="font-size:1.25rem;"></span></div>
-                   </div>
+                   </div> -->
                 </div>
               </div>
             </div>
@@ -145,6 +160,10 @@
                   <div class="row">
                      <div class="col-12 mb-4 text-center">
                        <span><span id="result-rolls" class="badge badge-success" style="font-size:2rem;"></span></span>
+                     </div>
+                     <div class="col-12 mb-4 text-center">
+                       <div id="tp-roll-catcher" class="mb-4" style="color:#fff; max-width:600px; margin:0 auto;"></div>
+                       <div id="tp-usage-statement" class="mb-4"></div>
                      </div>
                   </div>
                 </div>
@@ -222,7 +241,53 @@
 
 jQuery(document).ready(function($) {
 
-  let form_block = `<div class="tp-form mb-4"><div class="card"><div class="card-header"><span>Household Member</span><a class="delete-potty-card badge badge-danger p-2" style="color:#fff; float:right;">X</a></div><div class="card-body"><div class="row"><div class="col-12 mb-3"><input type="text" class="form-control" name="name" value="" placeholder="Name" /></div><div class="col-12"><div class="row"><div class="col-4"><label>Poops/Day</label><input type="number" class="form-control" name="poops_day" placeholder="Poops/Day" step="1" /></div><div class="col-4"><label>Wipes/Poop</label><input type="number" class="form-control" name="wipes_poop" placeholder="Wipes/Poop" step="1" /></div><div class="col-4"><label>Sheets/Wipe</label><input type="number" class="form-control" name="sheets_poop_wipe" placeholder="Sheets/Wipe" step="1" /></div></div></div><div class="col-12"><div class="row"><div class="col-4"><label>Pees/Day</label><input type="number" class="form-control" name="pees_day" placeholder="Pees/Day" step="1" /></div><div class="col-4"><label>Wipes/Pee</label><input type="number" class="form-control" name="wipes_pee" placeholder="Wipes/Pee" step="1" /></div><div class="col-4"><label>Sheets/Wipe</label><input type="number" class="form-control" name="sheets_pee_wipe" placeholder="Sheets/Wipe" step="1" /></div></div></div></div></div></div></div>`;
+  let form_block = `<div class="tp-form mb-4">
+                      <div class="card">
+                        <div class="card-header">
+                          <span>Household Member</span>
+                          <a class="delete-potty-card badge badge-danger p-2" style="color:#fff; float:right;">X</a>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-12 mb-3">
+                              <input type="text" class="form-control" name="name" value="" placeholder="Name" />
+                            </div>
+                            <div class="col-12 mb-3">
+                              <div class="row">
+                                <div class="col-12 col-sm-4 mb-3">
+                                  <label>Poops/Day</label>
+                                  <input type="number" class="form-control" name="poops_day" placeholder="Poops/Day" step="1" />
+                                </div>
+                                <div class="col-12 col-sm-4 mb-3">
+                                  <label>Wipes/Poop</label>
+                                  <input type="number" class="form-control" name="wipes_poop" placeholder="Wipes/Poop" step="1" />
+                                </div>
+                                <div class="col-12 col-sm-4 mb-3">
+                                  <label>Sheets/Wipe</label>
+                                  <input type="number" class="form-control" name="sheets_poop_wipe" placeholder="Sheets/Wipe" step="1" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                              <div class="row">
+                                <div class="col-12 col-md-4">
+                                  <label>Pees/Day</label>
+                                  <input type="number" class="form-control" name="pees_day" placeholder="Pees/Day" step="1" />
+                                </div>
+                                <div class="col-12 col-md-4">
+                                  <label>Wipes/Pee</label>
+                                  <input type="number" class="form-control" name="wipes_pee" placeholder="Wipes/Pee" step="1" />
+                                </div>
+                                <div class="col-12 col-md-4">
+                                  <label>Sheets/Wipe</label>
+                                  <input type="number" class="form-control" name="sheets_pee_wipe" placeholder="Sheets/Wipe" step="1" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>`;
 
   function initDeletePottyCard() {
     $('.delete-potty-card').on('click', function() {
@@ -293,6 +358,9 @@ jQuery(document).ready(function($) {
     });
 
     let roll_count = Math.ceil(totals.rolls_daily * quarantine_time);
+
+    for(r=0; r<roll_count; r++) {$('#tp-roll-catcher').append('<i class="fa fas fa-toilet-paper bg-primary px-2 py-2 mr-2 mb-2"></i>');}
+    $('#tp-usage-statement').append(`Approximately <strong>${roll_count} to ${roll_count + 1}</strong> rolls, each roll containing <strong>${sheets_per_roll} sheets</strong>.`);
 
     $('#total_sheets_daily').text(Math.ceil(totals.sheets_daily));
     $('#total_sheets_weekly').text(Math.ceil(totals.sheets_weekly));
